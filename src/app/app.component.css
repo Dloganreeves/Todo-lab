@@ -1,0 +1,11 @@
+.completed {
+    text-decoration: linethrough;
+    text-decoration-color: red;
+}
+
+.main{
+    background-color: white;
+    padding-bottom: 10%;
+    padding-top: 5%;
+}
+    
