@@ -1,5 +1,5 @@
 .completed {
-    text-decoration: linethrough;
+    text-decoration: line-through;
     text-decoration-color: red;
 }
 
@@ -8,4 +8,8 @@
     padding-bottom: 10%;
     padding-top: 5%;
 }
-    
+
+*{
+        Font-family:"Open Sans" sans-serif;
+        Font-weight: 300;
+ }

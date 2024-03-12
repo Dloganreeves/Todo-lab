@@ -1,15 +1,38 @@
 <div class = "main">
 <h1>{{title}}</h1>
-
+<input type="text" [(ngModel)]="filter"/>
+@if(completeMessage()){<p>All tasks completed!</p>}
     <ol>
-      @for(t of List; track $index) {
-      <li  [class.completed]="t.completed">
-         <button [hidden]="t.completed">Complete</button>
-         {{t.task}}  ({{t.duration | number: '1.1-2'}}hr)
-       <button style="float: right">X</button>
+      @for(t of getFiltered(); track $index) {
+      <li >
+          @if (t.completed == false) {<button (click)="completeTask(t)">Complete</button>}
+         <span (click)="toggleEdit(t)" [class.completed]="t.completed">{{t.task}}  ({{t.duration | number: '1.1-2'}}hr)</span>
+         @if (t.priority =="LOW"){<span> &darr; Low Priority</span>}
+         @if (t.priority =="HIGH"){<span> &uarr; High Priority</span>}
+       <button (click)="removeTask(t)" style="float: right">X</button>
       </li>
+      @if(t.displayEdit){<input type="text" [(ngModel)]="t.task" />}
       }
     </ol>
+
+    <div>
+      <label for="task">Enter a new task: </label>
+      <br />
+      <input type="text" id="task" [(ngModel)]="formTodo.task"/>
+      <br />
+      <label for="hours">How many hours do you estimate?</label>
+      <br />
+      <input type="number" id="hours" [(ngModel)]="formTodo.duration"/>
+      <br />
+      <label>What is the priority level?</label>
+      <input type="radio" id="high" name="Priority" [(ngModel)]="formTodo.priority" value="HIGH"/>
+      <label for="high">High</label>
+      <input type="radio" id="low" name="Priority" [(ngModel)]="formTodo.priority" value="LOW"/>
+      <label for="low">Low</label>
+      <input type="radio" id="normal" name="Priority" [(ngModel)]="formTodo.priority" value="NORMAL"/>
+      <label for="normal">Normal</label>
+      <button (click)="addTask()">Add Task</button>
+    </div>
   
   </div>
 
